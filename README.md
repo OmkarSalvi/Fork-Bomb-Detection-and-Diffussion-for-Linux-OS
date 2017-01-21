@@ -1,1 +1,2 @@
 #Fork Bomb Detection and Diffussion in Linux OS
+●	Introduced a module in kernel to monitor the processes for fork bombs and defuse a bomb before it causes serious damage to the system. This new function is implemented in a kernel thread so it can monitor the processes in background without slowing down the kernel. Semaphore is used to synchronize the waking up of the kernel thread and conserve the resources.
