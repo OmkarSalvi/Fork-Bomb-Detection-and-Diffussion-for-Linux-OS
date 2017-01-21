@@ -1,0 +1,25 @@
+86a87,89
+> #include <linux/module.h>	//To export semaphore sem_fork_exe
+> #include <linux/semaphore.h>
+> 
+108a112,122
+> // Struct for semaphore defined in fiork.c to synchronize kernel thread in kernel module.
+> struct sema_fork
+> {
+> 	struct semaphore sem_fork_exe;
+> };
+> struct sema_fork *sema_forkp;
+> 
+> struct semaphore *sem_fork_e;
+> EXPORT_SYMBOL_GPL(sem_fork_e);
+> 
+> 
+310a325,329
+> 
+> 	sema_forkp = (struct sema_fork *)kmalloc(sizeof(struct sema_fork), GFP_KERNEL);
+> 	sema_init(&sema_forkp->sem_fork_exe,1); 	// Creates mutex
+> 	sem_fork_e = &sema_forkp->sem_fork_exe;
+> 
+1685a1705,1706
+> 
+> 	up(sem_fork_e);	// SB : Up the semaphore
